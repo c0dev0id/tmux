@@ -375,8 +375,8 @@ tty_send_requests(struct tty *tty)
 			tty_puts(tty, "\033[>c");
 		if (~tty->flags & TTY_HAVEXDA)
 			tty_puts(tty, "\033[>q");
-		tty_puts(tty, "\033]10;?\033\\");
-		tty_puts(tty, "\033]11;?\033\\");
+		tty_puts(tty, "\033]10;?\007");
+		tty_puts(tty, "\033]11;?\007");
 	} else
 		tty->flags |= TTY_ALL_REQUEST_FLAGS;
 	tty->last_requests = time (NULL);
@@ -395,8 +395,8 @@ tty_repeat_requests(struct tty *tty)
 	tty->last_requests = t;
 
 	if (tty->term->flags & TERM_VT100LIKE) {
-		tty_puts(tty, "\033]10;?\033\\");
-		tty_puts(tty, "\033]11;?\033\\");
+		tty_puts(tty, "\033]10;?\007");
+		tty_puts(tty, "\033]11;?\007");
 	}
 }
 
